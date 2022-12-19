@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      dockerfile: Dockerfile
+      context: .
+      args:
+        NODE_IMAGE: ${NODE_IMAGE}
+        APP_PORT: ${APP_PORT}
+    container_name: ${APP_NAME}-app
+    env_file:
+      - .env
+    ports:
+      - 3000:${APP_PORT}
+    command: sh -c "npm start"
+    volumes:
+      - ./:/home/app
+      - ./node_modules:/home/app/node_modules
