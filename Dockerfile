@@ -1,15 +1,16 @@
 ARG NODE_IMAGE=node:16.16.0-alpine
-ARG APP_PORT=3001
+ARG APP_PORT=3000
 
 # ======================================
 FROM ${NODE_IMAGE}
 
 WORKDIR /home/app
 
-COPY . .
 COPY package*.json .
 
-RUN npm i
+RUN npm install
+
+COPY . .
 
 EXPOSE $APP_PORT
 
